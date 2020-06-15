@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/note_new"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_100"
+    android:orientation="vertical"
+    tools:context=".UI.PostActivity"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="62dp"
+        android:layout_marginTop="@dimen/activity_margin_5"
+        android:background="@drawable/background">
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="5dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_back"
+            android:background="@null"/>
+        <TextView
+            android:id="@+id/tc_appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ib_back"
+            android:layout_toLeftOf="@id/ib_edit_ok"
+            android:layout_centerVertical="true"
+            android:gravity="left"
+            android:textSize="@dimen/text_size_22"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="@color/bar_active"
+            android:text="@string/app_name"/>
+        <ImageButton
+            android:id="@+id/ib_edit_ok"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="20dp"
+            android:scaleType="centerInside"
+            android:background="@mipmap/ic_ok_blue"/>
+
+        <View
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/grey_600"></View>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_new_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="请输入标题"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_marginTop="20dp"
+        android:textSize="@dimen/text_size_20"
+        android:textStyle="bold"
+        android:textColor="@color/grey_700"
+        android:padding="@dimen/activity_margin_16"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_margin_16"
+        android:paddingRight="@dimen/activity_margin_16"
+        android:paddingBottom="@dimen/activity_margin_5"/>
+
+    <EditText
+        android:id="@+id/et_new_content"
+        android:layout_width="match_parent"
+        android:layout_height="222dp"
+        android:layout_marginTop="30dp"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="在这里输入正文..."
+        android:padding="@dimen/activity_margin_16"
+        android:textColor="@color/grey_600"
+        android:textSize="@dimen/text_size_16" />
+
+</LinearLayout>

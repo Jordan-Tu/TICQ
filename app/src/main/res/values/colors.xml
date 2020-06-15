@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="selected">#6200EE</color>
+    <color name="buttonConfirm">#4169E1</color>
+    <color name="bar_active">#06AFFB</color>
+    <color name="bar_inactive">#6C212121</color>
+    <color name="bar_background">#ffffff</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- Grey-->
+    <color name="grey_000">#FFFFFF</color>
+    <color name="grey_050">#FAFAFA</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#EEEEEE</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_400">#BDBDBD</color>
+    <color name="grey_500">#9E9E9E</color>
+    <color name="grey_600">#757575</color>
+    <color name="grey_700">#616161</color>
+    <color name="grey_800">#424242</color>
+    <color name="grey_900">#6C212121</color>
+</resources>

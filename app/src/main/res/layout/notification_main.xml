@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chat_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+    android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="62dp"
+            android:layout_marginBottom="@dimen/activity_margin_5"
+            android:background="@color/grey_200">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/ic_back"
+                android:backgroundTint="#FFFFFF"/>
+
+
+            <TextView
+                android:id="@+id/tv_chat_chatName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:textSize="@dimen/text_size_22"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:textColor="@color/bar_active"
+                android:text="@string/app_name"/>
+
+            <View
+                android:layout_marginTop="60dp"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/grey_600"></View>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notice_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+
+</LinearLayout>

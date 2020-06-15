@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ic_logo" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:text="@string/app_name"
+            android:textColor="#000"
+            android:textSize="23sp"
+            android:typeface="monospace" />
+
+
+        <com.jkb.vcedittext.VerificationCodeEditText
+            android:id="@+id/verify_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_icon"
+            android:layout_marginTop="50dp"
+            android:inputType="text"
+            android:text=""
+            android:textColor="@color/grey_900"
+            android:textSize="40sp"
+            android:cursorVisible="true"
+            app:selectedBackgroundColor="@color/transparent"
+            app:bottomLineSelectedColor="@color/bar_active"
+            app:cursorColor="@color/grey_900"
+            app:cursorWidth="2dp"
+            cursorDuration="2"
+            app:bottomLineHeight="2dp"
+            app:figures="4"
+            app:verCodeMargin="10dp" />
+
+        <Button
+            android:id="@+id/btn_verify_confirm"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/verify_code"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@color/buttonConfirm"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="确定"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

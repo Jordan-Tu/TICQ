@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/topic_margin">
+        <TextView
+            android:id="@+id/tv_comment_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:hint="#路人甲:"
+            android:textSize="@dimen/text_size_16"
+            />
+        <TextView
+            android:id="@+id/tv_comment_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_comment_user"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_alignParentLeft="true"
+            android:textSize="14dp"
+            android:hint="评论"/>
+
+
+        <TextView
+            android:id="@+id/tv_comment_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/topic_margin"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:hint="XX:XX"
+            android:textSize="@dimen/comment_item_small" />
+
+        <View
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/grey_400"
+            android:layout_below="@id/tv_comment_content"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

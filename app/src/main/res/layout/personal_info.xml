@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:clickable="true"
+    android:focusableInTouchMode="true">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="62dp"
+        android:layout_marginBottom="@dimen/activity_margin_5"
+        android:background="@color/grey_200">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:src="@mipmap/ic_back"
+            android:backgroundTint="#FFFFFF"/>
+
+
+        <TextView
+            android:id="@+id/tc_appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textSize="@dimen/text_size_22"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="@color/bar_active"
+            android:text="@string/app_name"/>
+
+        <ImageButton
+            android:id="@+id/ib_save"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/ic_ok_blue" />
+
+        <View
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/grey_600"></View>
+    </RelativeLayout>
+
+
+
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/ic_logo" />
+
+    <TextView
+        android:id="@+id/tv_userEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:hint="这里是用户邮箱"
+        android:textColor="#000"
+        android:textSize="23sp"
+        android:typeface="monospace" />
+
+    <RelativeLayout
+        android:id="@+id/rl_userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_userEmail"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_userName"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="15dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_account"/>
+
+        <EditText
+            android:id="@+id/et_userName"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/iv_userName"
+            android:background="@null"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ems="19"
+            android:hint=" 昵称"
+            android:inputType="textEmailAddress"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_userNameClear"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            android:src="@mipmap/ic_close"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_userSex"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@id/rl_userName"
+        android:layout_marginTop="1dp"
+        android:background="@drawable/background">
+
+        <ImageView
+            android:id="@+id/iv_userSex"
+            android:layout_width="60dp"
+            android:layout_centerVertical="true"
+            android:layout_height="60dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="15dp"
+            android:src="@mipmap/ic_sex"/>
+
+        <ImageButton
+            android:id="@+id/ib_male"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="100dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_male"
+            android:background="@color/transparent"/>
+
+        <ImageButton
+            android:id="@+id/ib_female"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="250dp"
+            android:background="@color/transparent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_female" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_userIphone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_userSex"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_userIconPhone"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="15dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_phone"/>
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_userIconPhone"
+            android:background="@null"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ems="19"
+            android:hint="  手机"
+            android:inputType="phone"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_phoneClear"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            android:src="@mipmap/ic_close"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_userAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_userIphone"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:id="@+id/iv_userIconAdd"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="30dp"
+            android:paddingTop="15dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_address"/>
+
+        <EditText
+            android:id="@+id/et_address"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/iv_userIconAdd"
+            android:background="@null"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:ems="19"
+            android:hint="  地址"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/iv_addClear"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            android:src="@mipmap/ic_close"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="100dp"
+        app:backgroundTint="@color/bar_background"
+        android:src="@mipmap/ic_add"
+        android:scaleType="centerCrop"
+        app:fabSize="mini"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

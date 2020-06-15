@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:id="@+id/left_layout"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_notice"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/left_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="12dp"
+                android:textSize="20dp"
+                android:text="涂哲维："
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/left_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/left_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="12dp"
+                android:textSize="18dp"
+                android:text="请求添加您为好友"/>
+
+
+        </RelativeLayout>
+
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/right_layout"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:background="@drawable/ic_notice"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/right_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="12dp"
+                android:textSize="20dp"
+                android:text="涂哲维："
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/right_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/right_name"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="12dp"
+                android:textSize="18dp"
+                android:text="和您解除了好友关系"/>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

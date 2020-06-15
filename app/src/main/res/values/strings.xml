@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TICQ</string>
+    <string name="server_ip_add">http://47.92.215.34</string>
+    <string name="server_name">/TICQ</string>
+    <string name="author">Jordan Tu</string>
+    <string name="connect">技术联系_20171344089@nuist.edu.cn</string>
+</resources>
