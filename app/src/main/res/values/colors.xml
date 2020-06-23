@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="selected">#6200EE</color>
+    <color name="selected">#00BCD4</color>
     <color name="buttonConfirm">#4169E1</color>
     <color name="bar_active">#06AFFB</color>
     <color name="bar_inactive">#6C212121</color>

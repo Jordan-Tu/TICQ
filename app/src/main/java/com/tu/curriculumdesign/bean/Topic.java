@@ -1,7 +1,5 @@
 package com.tu.curriculumdesign.bean;
 
-import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 

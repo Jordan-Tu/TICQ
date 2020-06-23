@@ -8,14 +8,19 @@
             android:title="我的"></item>
 
         <item
-            android:id="@+id/nav_email"
-            android:icon="@mipmap/ic_email"
-            android:title="邮箱"></item>
+            android:id="@+id/nav_notification"
+            android:icon="@mipmap/ic_notification"
+            android:title="消息通知"></item>
 
         <item
             android:id="@+id/nav_test"
             android:icon="@mipmap/ic_message"
             android:title="测试"></item>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@mipmap/ic_logout"
+            android:title="退出登录"></item>
 
     </group>
 </menu>

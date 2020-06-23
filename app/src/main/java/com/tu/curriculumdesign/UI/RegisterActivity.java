@@ -16,7 +16,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.jkb.vcedittext.VerificationCodeEditText;
 import com.tu.curriculumdesign.R;
@@ -39,7 +38,7 @@ import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends BaseActivity {
 
     @BindView(R.id.et_userName) EditText et_username;
     @BindView(R.id.et_email) EditText et_email;

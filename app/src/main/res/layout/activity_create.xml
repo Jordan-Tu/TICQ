@@ -8,18 +8,6 @@
     android:background="@color/grey_100"
     android:orientation="vertical"
     tools:context=".UI.TestActivity">
-    <EditText
-        android:id="@+id/et_email"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content">
-
-    </EditText>
-
-    <Button
-        android:id="@+id/bt_addFriend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="添加好友" />
 
     <Button
         android:id="@+id/bt_receiveFriend"
@@ -27,15 +15,10 @@
         android:layout_height="wrap_content"
         android:text="获得好友请求"/>
 
-    <Button
-        android:id="@+id/bt_acceptFriend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="接受好友请求"/>
-
     <TextView
         android:id="@+id/tv_request"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="信息"/>
 
 </LinearLayout>

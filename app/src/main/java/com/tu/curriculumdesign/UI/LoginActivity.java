@@ -170,9 +170,8 @@ public class LoginActivity extends AppCompatActivity {
             remember_pw.setChecked(true);
             if(autoLogin){
                 auto_login.setChecked(true);
-                Toast.makeText(LoginActivity.this, "登录成功！", Toast.LENGTH_SHORT).show();
                 addPreference(email,password);
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                LoginRequest(email,password);
             }
         }
     }

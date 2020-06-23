@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <string-array name="function">
-        <item>我的</item>
-        <item>大厅</item>
-        <item>私信</item>
-    </string-array>
-</resources>

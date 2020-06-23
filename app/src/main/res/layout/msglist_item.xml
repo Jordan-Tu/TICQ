@@ -16,18 +16,21 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="2dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="5dp"
+            app:civ_border_color="@color/buttonConfirm"
             app:civ_border_width="1dp"
-            android:src="@drawable/background6" />
+            android:src="@drawable/background" />
 
         <TextView
             android:id="@+id/tv_photo_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:layout_marginLeft="14dp"
+            android:layout_marginLeft="20dp"
             android:text="张"
-            android:textSize="@dimen/user_name"
+            android:textSize="28dp"
+            android:textColor="@color/buttonConfirm"
             />
 
         <TextView
@@ -39,6 +42,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:text="张三"
+            android:textColor="@color/buttonConfirm"
             android:textSize="@dimen/user_name"
             android:textStyle="bold"
             />
@@ -55,16 +59,13 @@
             android:text="你好，很高兴认识你！"
             android:textSize="@dimen/topic_item_small" />
 
-        <TextView
-            android:id="@+id/tv_message_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:text="12:00"
-            android:textSize="@dimen/topic_item_small" />
+        <View
+            android:layout_marginTop="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/buttonConfirm"
+            android:layout_below="@id/tv_message"/>
+
 
     </RelativeLayout>
 

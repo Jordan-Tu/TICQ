@@ -15,7 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.tu.curriculumdesign.R;
@@ -39,7 +38,7 @@ import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoActivity extends BaseActivity {
 
     @BindView(R.id.et_userName) EditText et_username;
     @BindView(R.id.et_phone) EditText et_phone;

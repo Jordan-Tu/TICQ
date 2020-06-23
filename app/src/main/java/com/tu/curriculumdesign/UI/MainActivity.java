@@ -1,53 +1,64 @@
 package com.tu.curriculumdesign.UI;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.alibaba.fastjson.JSON;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.google.android.material.navigation.NavigationView;
 import com.tu.curriculumdesign.R;
 import com.tu.curriculumdesign.adapter.FragmentAdapter;
+import com.tu.curriculumdesign.application.ActivityController;
 import com.tu.curriculumdesign.application.MyApplication;
+import com.tu.curriculumdesign.bean.User;
 import com.tu.curriculumdesign.fragment.MessageFragment;
 import com.tu.curriculumdesign.fragment.MineFragment;
 import com.tu.curriculumdesign.fragment.TopicFragment;
+import com.tu.curriculumdesign.util.HttpUtil;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.TreeMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
 
-import static com.tu.curriculumdesign.R.drawable.background1;
-import static com.tu.curriculumdesign.R.drawable.background2;
-import static com.tu.curriculumdesign.R.drawable.background3;
-import static com.tu.curriculumdesign.R.drawable.background4;
-import static com.tu.curriculumdesign.R.drawable.background5;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     @BindView(R.id.bottom_navigation_bar) BottomNavigationBar bottomNavigationBar;
     @BindView(R.id.viewPager) ViewPager2 viewPager;
     @BindView(R.id.drawer_layout) DrawerLayout drawer_layout;
     @BindView(R.id.navigation_view) NavigationView navigation_view;
     @BindView(R.id.tv_top_name) TextView tv_top_name;
     @BindView(R.id.civ_name) CircleImageView civ_name;
+    @BindView(R.id.civ_search)CircleImageView civ_search;
 
     @OnClick(R.id.fab) void toPost(){
         startActivity(new Intent(MainActivity.this,PostActivity.class));
@@ -67,13 +78,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initPager();
-        List<Integer> background = new ArrayList<>();
-        background.add(background1);
-        background.add(background2);
-        background.add(background3);
-        background.add(background4);
-        background.add(background5);
-        civ_name.setImageResource(background.get(new Random().nextInt(5)));
+        civ_name.setImageResource(R.drawable.background);
         tv_top_name.setText(MyApplication.getCurrentUser().getName().substring(0,1));
 
         bottomNavigationBar
@@ -84,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 .setInActiveColor(R.color.bar_inactive)
                 .addItem(new BottomNavigationItem(R.mipmap.ic_topic, "话题"))
                 .addItem(new BottomNavigationItem(R.mipmap.ic_message,"聊天"))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_mine, "我的"))
+                .addItem(new BottomNavigationItem(R.mipmap.ic_mine, "测试"))
                 .setFirstSelectedPosition(0)
                 .initialise();
 
@@ -119,14 +124,17 @@ public class MainActivity extends AppCompatActivity {
                     intent.putExtra("flag", true);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                }else if(item.getTitle().toString().equals("邮箱")){
+                }else if(item.getTitle().toString().equals("消息通知")){
                     startActivity(new Intent(MainActivity.this, NotificationActivity.class));
                 }else if(item.getTitle().toString().equals("测试")){
                     startActivity(new Intent(MainActivity.this, TestActivity.class));
+                }else if(item.getTitle().toString().equals("退出登录")){
+                    ActivityController.finishAll();
                 }
                 return true;
             }
         });
+
 
         drawer_layout.addDrawerListener(new DrawerLayout.DrawerListener() {
             @Override
@@ -144,6 +152,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
+                if(navigation_view.getCheckedItem()!=null){
+                    navigation_view.getCheckedItem().setChecked(false);
+                }
             }
 
             @Override
@@ -179,6 +190,74 @@ public class MainActivity extends AppCompatActivity {
                 super.onPageScrollStateChanged(state);
             }
         });
+    }
+
+    @OnClick(R.id.civ_search) void search(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final EditText edit = new EditText(this);
+        edit.setHint("email@ticq.com");
+        builder.setTitle("请输入账号：").setView(edit)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(edit.getText().toString().equals("")){
+                            Toast.makeText(MainActivity.this, "账号不能为空哦！", Toast.LENGTH_SHORT).show();
+                        }else{
+                            dialog.cancel();
+                            getUser(Integer.parseInt(edit.getText().toString()));
+                        }
+
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                }).create();
+        builder.show();
+    }
+
+    private void getUser(Integer id){
+        String controller = "/displayUserInfo";
+        RequestBody requestBody = new FormBody.Builder()
+                .add("id", id.toString())
+                .build();
+
+        HttpUtil.sendOkHttpRequest(controller, requestBody, new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Looper.prepare();
+                Log.d(controller,"onFailure:"+e.getMessage());
+                Toast.makeText(MainActivity.this, "出错了！", Toast.LENGTH_SHORT).show();
+                Looper.loop();
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull okhttp3.Response response) throws IOException {
+                Looper.prepare();
+                String string = response.body().string();
+                User user = null;
+                try {
+                    user = JSON.parseObject(string).toJavaObject(User.class);
+                }catch (Exception e){
+                    Log.d(controller,"onFailure:"+e.getMessage());
+                }
+                if (user!=null) {
+                    Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("user",user);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, "找到该用户了！", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(MainActivity.this, "很抱歉未找到该用户！", Toast.LENGTH_SHORT).show();
+                }
+                Looper.loop();
+            }
+        });
+
+
     }
 
 

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.tu.curriculumdesign.R;
 import com.tu.curriculumdesign.bean.Notification;
 

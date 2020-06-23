@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -52,7 +51,7 @@ import okhttp3.RequestBody;
 
 import static com.tu.curriculumdesign.application.MyApplication.getContext;
 
-public class TopicActivity extends AppCompatActivity {
+public class TopicActivity extends BaseActivity {
 
     @BindView(R.id.tv_topic_title) TextView tv_topic_title;
     @BindView(R.id.tv_topic_content) TextView tv_topic_content;

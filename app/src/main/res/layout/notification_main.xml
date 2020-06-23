@@ -45,11 +45,17 @@
 
         </RelativeLayout>
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/notice_swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/notice_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 

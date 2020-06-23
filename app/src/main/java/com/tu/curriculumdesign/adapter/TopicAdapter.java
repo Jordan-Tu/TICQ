@@ -54,7 +54,6 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Topic topic = mTopicList.get(position);
-                Toast.makeText(MyApplication.getContext(), topic.getContent(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MyApplication.getContext(), TopicActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Bundle bundle = new Bundle();

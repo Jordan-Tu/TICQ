@@ -8,8 +8,6 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.tu.curriculumdesign.R;
 import com.tu.curriculumdesign.application.MyApplication;
 import com.tu.curriculumdesign.util.HttpUtil;
@@ -28,7 +26,7 @@ import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.RequestBody;
 
-public class PostActivity extends AppCompatActivity {
+public class PostActivity extends BaseActivity {
     @BindView(R.id.et_new_title) EditText et_new_title;
     @BindView(R.id.et_new_content) EditText et_new_content;
     private ZLoadingDialog dialog = new ZLoadingDialog(PostActivity.this);

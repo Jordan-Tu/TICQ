@@ -1,25 +1,17 @@
 package com.tu.curriculumdesign.UI;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.tu.curriculumdesign.R;
@@ -33,10 +25,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,10 +36,12 @@ import okhttp3.FormBody;
 import okhttp3.RequestBody;
 
 
-public class NotificationActivity extends AppCompatActivity {
+public class NotificationActivity extends BaseActivity {
 
     @BindView(R.id.notice_recycler_view)
     RecyclerView notice_recycler_view;
+    @BindView(R.id.notice_swipeRefresh)
+    SwipeRefreshLayout notice_swipeRefresh;
     private NotificationAdapter notificationAdapter;
 
     private List<Notification> notificationList = new ArrayList<>();
@@ -73,21 +64,21 @@ public class NotificationActivity extends AppCompatActivity {
                 for (int i = 0; i < userList.size(); i++) {
                     notificationList.add(new Notification(userList.get(i), Notification.TYPE_APPLICATION));
                 }
-                System.out.println("getFriendDeleteRequest()");
                 getFriendDeleteRequest();
             } else if (msg.what == Notification.TYPE_DELETE) {
                 List<User> userList1 = (List<User>) msg.obj;
-                System.out.println("msg.what == Notification.TYPE_DELETE"+userList1.toString());
                 for (int i = 0; i < userList1.size(); i++) {
                     notificationList.add(new Notification(userList1.get(i), Notification.TYPE_DELETE));
                 }
-                for (int i = 0; i < notificationList.size(); i++) {
-                    System.out.println(notificationList.get(i).getType() + notificationList.get(i).getUser().toString());
+                if(notificationList.isEmpty()){
+                    Toast.makeText(NotificationActivity.this, "没有通知！", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(NotificationActivity.this, "接收成功！", Toast.LENGTH_SHORT).show();
                 }
             }
             notificationAdapter = new NotificationAdapter(notificationList,mOnClick);
             notice_recycler_view.setAdapter(notificationAdapter);
-
+            notice_swipeRefresh.setRefreshing(false);
         }
     };
 
@@ -99,6 +90,13 @@ public class NotificationActivity extends AppCompatActivity {
         getFriendRequest();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         notice_recycler_view.setLayoutManager(linearLayoutManager);
+        notice_swipeRefresh.setColorSchemeResources(android.R.color.holo_blue_light,android.R.color.holo_red_light,android.R.color.holo_blue_light);
+        notice_swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getFriendRequest();
+            }
+        });
     }
 
 
@@ -156,15 +154,9 @@ public class NotificationActivity extends AppCompatActivity {
                 Looper.prepare();
                 String result = response.body().string();
                 List<User> userList = JSON.parseArray(result, User.class);
-                System.out.println(userList.toString());
                 Message message = Message.obtain();
                 message.obj = userList;
                 message.what = Notification.TYPE_APPLICATION;
-                if (!userList.isEmpty()) {
-                    Toast.makeText(NotificationActivity.this, "好友请求接收成功！", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(NotificationActivity.this, "没有好友请求！", Toast.LENGTH_SHORT).show();
-                }
                 handler.sendMessage(message);
                 Looper.loop();
             }
@@ -191,15 +183,9 @@ public class NotificationActivity extends AppCompatActivity {
                 Looper.prepare();
                 String result = response.body().string();
                 List<User> userList = JSON.parseArray(result, User.class);
-                System.out.println(userList.toString());
                 Message message = Message.obtain();
                 message.obj = userList;
                 message.what = Notification.TYPE_DELETE;
-                if (!userList.isEmpty()) {
-                    Toast.makeText(NotificationActivity.this, "删除通知接收成功！", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(NotificationActivity.this, "没有删除通知！", Toast.LENGTH_SHORT).show();
-                }
                 handler.sendMessage(message);
                 Looper.loop();
             }

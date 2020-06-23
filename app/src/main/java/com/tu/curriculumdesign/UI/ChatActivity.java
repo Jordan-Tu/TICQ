@@ -22,8 +22,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,9 +32,7 @@ import com.tu.curriculumdesign.R;
 import com.tu.curriculumdesign.adapter.MsgAdapter;
 import com.tu.curriculumdesign.application.MyApplication;
 import com.tu.curriculumdesign.bean.ChatRecord;
-import com.tu.curriculumdesign.bean.Comment;
 import com.tu.curriculumdesign.bean.Msg;
-import com.tu.curriculumdesign.bean.Topic;
 import com.tu.curriculumdesign.bean.User;
 import com.tu.curriculumdesign.util.HttpUtil;
 
@@ -45,7 +41,6 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -60,7 +55,7 @@ import okhttp3.RequestBody;
 
 import static com.tu.curriculumdesign.application.MyApplication.getContext;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends BaseActivity {
 
     @BindView(R.id.tv_chat_chatName) TextView tv_chat_chatName;
     @BindView(R.id.et_message_input) EditText et_message_input;
@@ -83,7 +78,6 @@ public class ChatActivity extends AppCompatActivity {
                 chatRecordList = chatRecordListNew;
                 Collections.sort(chatRecordList);
                 for(int i=msgList.size();i<chatRecordList.size();i++){
-                    System.out.println(chatRecordList.get(i).getSenderId().toString());
                     if(chatRecordList.get(i).getSenderId().equals(chatUser.getId())){
                         msgList.add(new Msg(chatRecordList.get(i).getContent(),Msg.TYPE_RECEIVED));
                     }else if(chatRecordList.get(i).getSenderId().equals(MyApplication.getCurrentUser().getId())){
@@ -93,9 +87,9 @@ public class ChatActivity extends AppCompatActivity {
                 if(msg.what == 1){
                     msgAdapter = new MsgAdapter(msgList);
                     msg_recycler_view.setAdapter(msgAdapter);
-                }else {
-                    msgAdapter.notifyDataSetChanged();
                 }
+                System.out.println("notifyDataSetChanged()");
+                msgAdapter.notifyDataSetChanged();
                 msg_recycler_view.smoothScrollToPosition(msgList.size()>0?msgList.size()-1:0);
             }
         }
@@ -178,7 +172,6 @@ public class ChatActivity extends AppCompatActivity {
                 requestChatData();
             }
         }, 1000,1000);
-        timer.cancel();
     }
 
     @OnClick(R.id.iv_back) void back(){
@@ -303,12 +296,12 @@ public class ChatActivity extends AppCompatActivity {
                 if (response.body().string().equals("true")) {
                     Toast.makeText(ChatActivity.this, "删除成功！", Toast.LENGTH_SHORT).show();
                     try {
-                        Thread.sleep(1000);
                         timer.cancel();
+                        Thread.sleep(3000);
+                        finish();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    finish();
                 } else {
                     Toast.makeText(ChatActivity.this, "删除失败！", Toast.LENGTH_SHORT).show();
                 }
